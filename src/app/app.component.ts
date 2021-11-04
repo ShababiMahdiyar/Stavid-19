@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CasesByCountryComponent } from './cases-by-country/cases-by-country.component';
 
 
 @Component({
