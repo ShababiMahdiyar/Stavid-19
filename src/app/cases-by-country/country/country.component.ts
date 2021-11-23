@@ -27,9 +27,11 @@ export class CountryComponent {
       death: number;
       recovered: number;
       confirmedWeekly: [];
-      deathWeekly: []
-      recoveredWeekly: []
-      monthly: [];
+      deathWeekly: [];
+      recoveredWeekly: [];
+      confirmedMonthly: [];
+      recoveredMonthly: [];
+      deathMonthly: [];
     },
     private _liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog

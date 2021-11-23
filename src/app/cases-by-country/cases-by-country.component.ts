@@ -154,7 +154,6 @@ export class CasesByCountryComponent {
         });
     }
     this.loadCsvReadDeath();
-    this.calConfirmedMonthlyCases();
   }
 
   // This function is meant to calculate the sum of each row in CSV file (**Duplicated countries included)
@@ -219,79 +218,17 @@ export class CasesByCountryComponent {
         death: data.death,
         confirmedWeekly: data.confirmedWeekly,
         recoveredWeekly: data.recoveredWeekly,
-        deathWeekly: data.deathWeekly
+        deathWeekly: data.deathWeekly,
+        confirmedMonthly: data.confirmedMonthly,
+        recoveredMonthly: data.recoveredMonthly,
+        deathMonthly: data.deathMonthly
       },
     });
   }
 
-
-  calMonthlyCases() {
-
-    // this.http.get('../assets/confirmed.csv', { responseType: 'text' }).subscribe(
-    //   data => {
-    //     let csvData = data || '';
-    //     this.papa.parse(csvData, {
-    //       complete: parsedData => {
-    //         parsedData = parsedData.data
-    //         console.log(parsedData)
-    //         this.rawCsvData.splice(0, 1)
-    //       }
-    //     });
-    //   }
-    // )
-    // console.log(this.rawCsvData);
-
-
-
-    // const byCountry: any[] = [];
-    // this.confirmedCasesFile.forEach((element, i) => {
-    //   let index = 4
-    //   byCountry.push([element[1]]);
-    //   while (index < element.length) {
-    //     let total = 0;
-    //     if (index < 571) {
-    //       for (let j = index; j <= index + 7; j++) {
-    //         total = total + +element[j];
-    //       }
-    //     } else {
-    //       for (let j = index; j <= index + 4; j++) {
-    //         total = total + +element[j];
-    //       }
-    //     }
-    //     index += 8;
-    //     byCountry[i].push(total)
-    //   }
-    // });
-  }
-
   calConfirmedMonthlyCases() {
     const byCountry: any[] = [];
-    let merged;
-
     this.confirmedCasesFile.forEach((element) => {
-      // const monthCases = {
-      //   country: "",
-      //   january20: 0,
-      //   february20: 0,
-      //   march20: 0,
-      //   april20: 0,
-      //   may20: 0,
-      //   june20: 0,
-      //   july20: 0,
-      //   august20: 0,
-      //   september20: 0,
-      //   october20: 0,
-      //   november20: 0,
-      //   december20: 0,
-      //   january21: 0,
-      //   february21: 0,
-      //   march21: 0,
-      //   april21: 0,
-      //   may21: 0,
-      //   june21: 0,
-      //   july21: 0,
-      //   august21: 0
-      // };
 
       let january20: number = 0;
       let february20: number = 0;
@@ -313,7 +250,6 @@ export class CasesByCountryComponent {
       let june21: number = 0;
       let july21: number = 0;
       let august21: number = 0;
-
 
       for (let index = 4; index < 14; index++) {
         january20 = january20 + +element[index]
@@ -376,10 +312,7 @@ export class CasesByCountryComponent {
         august21 = august21 + +element[index]
       }
 
-
       byCountry.push([element[1], january20, february20, march20, april20, may20, june20, july20, august20, september20, october20, november20, december20, january21, february21, march21, april21, may21, june21, july21, august21]);
-
-
 
     });
 
@@ -393,7 +326,7 @@ export class CasesByCountryComponent {
       }
     }
 
-    for (let i = 0; i < byCountry.length - 1; i++) {
+    for (let i = 0; i < byCountry.length; i++) {
       if (byCountry[i][0] === this.proccessedData[i].country) {
         byCountry[i].forEach((element: any) => {
           this.proccessedData[i].confirmedMonthly.push(element);
@@ -402,6 +335,232 @@ export class CasesByCountryComponent {
     }
     this.proccessedData.forEach(element => {
       element.confirmedMonthly.splice(0, 1);
+    });
+
+  }
+
+  calRecoveredMonthlyCases() {
+    const byCountry: any[] = [];
+    this.recoveredCasesFile.forEach((element) => {
+
+      let january20: number = 0;
+      let february20: number = 0;
+      let march20: number = 0;
+      let april20: number = 0;
+      let may20: number = 0;
+      let june20: number = 0;
+      let july20: number = 0;
+      let august20: number = 0;
+      let september20: number = 0;
+      let october20: number = 0;
+      let november20: number = 0;
+      let december20: number = 0;
+      let january21: number = 0;
+      let february21: number = 0;
+      let march21: number = 0;
+      let april21: number = 0;
+      let may21: number = 0;
+      let june21: number = 0;
+      let july21: number = 0;
+      let august21: number = 0;
+
+      for (let index = 4; index < 14; index++) {
+        january20 = january20 + +element[index]
+      }
+      for (let index = 14; index < 43; index++) {
+        february20 = february20 + +element[index]
+      }
+      for (let index = 43; index < 74; index++) {
+        march20 = march20 + +element[index]
+      }
+      for (let index = 74; index < 104; index++) {
+        april20 = april20 + +element[index]
+      }
+      for (let index = 104; index < 135; index++) {
+        may20 = may20 + +element[index]
+      }
+      for (let index = 135; index < 165; index++) {
+        june20 = june20 + +element[index]
+      }
+      for (let index = 165; index < 196; index++) {
+        july20 = july20 + +element[index]
+      }
+      for (let index = 196; index < 227; index++) {
+        august20 = august20 + +element[index]
+      }
+      for (let index = 227; index < 257; index++) {
+        september20 = september20 + +element[index]
+      }
+      for (let index = 257; index < 288; index++) {
+        october20 = october20 + +element[index]
+      }
+      for (let index = 288; index < 318; index++) {
+        november20 = november20 + +element[index]
+      }
+      for (let index = 318; index < 349; index++) {
+        december20 = december20 + +element[index]
+      }
+      for (let index = 349; index < 380; index++) {
+        january21 = january21 + +element[index]
+      }
+      for (let index = 380; index < 408; index++) {
+        february21 = february21 + +element[index]
+      }
+      for (let index = 408; index < 439; index++) {
+        march21 = march21 + +element[index]
+      }
+      for (let index = 439; index < 469; index++) {
+        april21 = april21 + +element[index]
+      }
+      for (let index = 469; index < 500; index++) {
+        may21 = may21 + +element[index]
+      }
+      for (let index = 500; index < 530; index++) {
+        june21 = june21 + +element[index]
+      }
+      for (let index = 530; index < 561; index++) {
+        july21 = july21 + +element[index]
+      }
+      for (let index = 561; index < 577; index++) {
+        august21 = august21 + +element[index]
+      }
+
+      byCountry.push([element[1], january20, february20, march20, april20, may20, june20, july20, august20, september20, october20, november20, december20, january21, february21, march21, april21, may21, june21, july21, august21]);
+
+    });
+
+    for (let i = 0; i < byCountry.length - 1; i++) {
+      if (byCountry[i][0] === byCountry[i + 1][0]) {
+        for (let index = 1; index < byCountry[i].length - 1; index++) {
+          byCountry[i][index] = byCountry[i][index] + byCountry[i + 1][index]
+        }
+        byCountry.splice(i + 1, 1)
+        i--;
+      }
+    }
+
+    for (let i = 0; i < byCountry.length; i++) {
+      if (byCountry[i][0] === this.proccessedData[i].country) {
+        byCountry[i].forEach((element: any) => {
+          this.proccessedData[i].recoveredMonthly.push(element);
+        });
+      }
+    }
+    this.proccessedData.forEach(element => {
+      element.recoveredMonthly.splice(0, 1);
+    });
+
+  }
+
+  calDeathMonthlyCases() {
+    const byCountry: any[] = [];
+    this.deathCasesFile.forEach((element) => {
+
+      let january20: number = 0;
+      let february20: number = 0;
+      let march20: number = 0;
+      let april20: number = 0;
+      let may20: number = 0;
+      let june20: number = 0;
+      let july20: number = 0;
+      let august20: number = 0;
+      let september20: number = 0;
+      let october20: number = 0;
+      let november20: number = 0;
+      let december20: number = 0;
+      let january21: number = 0;
+      let february21: number = 0;
+      let march21: number = 0;
+      let april21: number = 0;
+      let may21: number = 0;
+      let june21: number = 0;
+      let july21: number = 0;
+      let august21: number = 0;
+
+      for (let index = 4; index < 14; index++) {
+        january20 = january20 + +element[index]
+      }
+      for (let index = 14; index < 43; index++) {
+        february20 = february20 + +element[index]
+      }
+      for (let index = 43; index < 74; index++) {
+        march20 = march20 + +element[index]
+      }
+      for (let index = 74; index < 104; index++) {
+        april20 = april20 + +element[index]
+      }
+      for (let index = 104; index < 135; index++) {
+        may20 = may20 + +element[index]
+      }
+      for (let index = 135; index < 165; index++) {
+        june20 = june20 + +element[index]
+      }
+      for (let index = 165; index < 196; index++) {
+        july20 = july20 + +element[index]
+      }
+      for (let index = 196; index < 227; index++) {
+        august20 = august20 + +element[index]
+      }
+      for (let index = 227; index < 257; index++) {
+        september20 = september20 + +element[index]
+      }
+      for (let index = 257; index < 288; index++) {
+        october20 = october20 + +element[index]
+      }
+      for (let index = 288; index < 318; index++) {
+        november20 = november20 + +element[index]
+      }
+      for (let index = 318; index < 349; index++) {
+        december20 = december20 + +element[index]
+      }
+      for (let index = 349; index < 380; index++) {
+        january21 = january21 + +element[index]
+      }
+      for (let index = 380; index < 408; index++) {
+        february21 = february21 + +element[index]
+      }
+      for (let index = 408; index < 439; index++) {
+        march21 = march21 + +element[index]
+      }
+      for (let index = 439; index < 469; index++) {
+        april21 = april21 + +element[index]
+      }
+      for (let index = 469; index < 500; index++) {
+        may21 = may21 + +element[index]
+      }
+      for (let index = 500; index < 530; index++) {
+        june21 = june21 + +element[index]
+      }
+      for (let index = 530; index < 561; index++) {
+        july21 = july21 + +element[index]
+      }
+      for (let index = 561; index < 577; index++) {
+        august21 = august21 + +element[index]
+      }
+
+      byCountry.push([element[1], january20, february20, march20, april20, may20, june20, july20, august20, september20, october20, november20, december20, january21, february21, march21, april21, may21, june21, july21, august21]);
+
+    });
+
+    for (let i = 0; i < byCountry.length - 1; i++) {
+      if (byCountry[i][0] === byCountry[i + 1][0]) {
+        for (let index = 1; index < byCountry[i].length - 1; index++) {
+          byCountry[i][index] = byCountry[i][index] + byCountry[i + 1][index]
+        }
+        byCountry.splice(i + 1, 1)
+        i--;
+      }
+    }
+
+    for (let i = 0; i < byCountry.length; i++) {
+      if (byCountry[i][0] === this.proccessedData[i].country) {
+        byCountry[i].forEach((element: any) => {
+          this.proccessedData[i].deathMonthly.push(element);
+        });
+      }
+    }
+    this.proccessedData.forEach(element => {
+      element.deathMonthly.splice(0, 1);
     });
 
     console.log(this.proccessedData)
@@ -438,7 +597,7 @@ export class CasesByCountryComponent {
       }
     }
 
-    for (let i = 0; i < byCountry.length - 1; i++) {
+    for (let i = 0; i < byCountry.length; i++) {
       if (byCountry[i][0] === this.proccessedData[i].country) {
         byCountry[i].forEach((element: any) => {
           this.proccessedData[i].confirmedWeekly.push(element);
@@ -485,7 +644,7 @@ export class CasesByCountryComponent {
       }
     }
 
-    for (let i = 0; i < byCountry.length - 1; i++) {
+    for (let i = 0; i < byCountry.length; i++) {
       if (byCountry[i][0] === this.proccessedData[i].country) {
         byCountry[i].forEach((element: any) => {
           this.proccessedData[i].recoveredWeekly.push(element);
@@ -530,7 +689,7 @@ export class CasesByCountryComponent {
       }
     }
 
-    for (let i = 0; i < byCountry.length - 1; i++) {
+    for (let i = 0; i < byCountry.length; i++) {
       if (byCountry[i][0] === this.proccessedData[i].country) {
         byCountry[i].forEach((element: any) => {
           this.proccessedData[i].deathWeekly.push(element);
@@ -545,6 +704,11 @@ export class CasesByCountryComponent {
 
     });
 
+
+    // Last line
+    this.calConfirmedMonthlyCases();
+    this.calRecoveredMonthlyCases();
+    this.calDeathMonthlyCases();
   }
 
 

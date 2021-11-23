@@ -10,7 +10,41 @@
 
 <container-element [ngSwitch]="monthlyOrWeekly">
   <ng-container *ngSwitchCase="true">
-    monthly
+    <mat-dialog-content class="mat-typography">
+      <ng-container *ngIf="data.type === 'confirmed'">
+        <mat-grid-list cols="2" rowHeight="60px" style="width: 600px;">
+          <mat-grid-tile><b>Month No.</b></mat-grid-tile>
+          <mat-grid-tile><b>Monthly Confirmed </b></mat-grid-tile>
+          <mat-divider></mat-divider>
+          <div *ngFor="let confirmed of data.confirmedMonthly; let i = index;">
+            <mat-grid-tile>{{i+1}}</mat-grid-tile>
+            <mat-grid-tile>{{confirmed}}</mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </ng-container>
+      <ng-container *ngIf="data.type === 'recovered'">
+        <mat-grid-list cols="2" rowHeight="60px" style="width: 600px;">
+          <mat-grid-tile><b>Month No.</b></mat-grid-tile>
+          <mat-grid-tile><b>Monthly Recovered </b></mat-grid-tile>
+          <mat-divider></mat-divider>
+          <div *ngFor="let recovered of data.recoveredMonthly; let i = index;">
+            <mat-grid-tile>{{i+1}}</mat-grid-tile>
+            <mat-grid-tile>{{recovered}}</mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </ng-container>
+      <ng-container *ngIf="data.type === 'death'">
+        <mat-grid-list cols="2" rowHeight="60px" style="width: 600px;">
+          <mat-grid-tile><b>Month No.</b></mat-grid-tile>
+          <mat-grid-tile><b>Monthly Death </b></mat-grid-tile>
+          <mat-divider></mat-divider>
+          <div *ngFor="let died of data.deathMonthly; let i = index;">
+            <mat-grid-tile>{{i+1}}</mat-grid-tile>
+            <mat-grid-tile>{{died}}</mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </ng-container>
+    </mat-dialog-content>
   </ng-container>
   <ng-container *ngSwitchCase="false">
     <mat-dialog-content class="mat-typography">
