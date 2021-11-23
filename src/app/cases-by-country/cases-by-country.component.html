@@ -1,18 +1,3 @@
-<!-- <table border="1" style="text-align:center;">
-  <thead>
-    <tr>
-      <th>Country</th>
-      <th>Confirmed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let country of proccessedData">
-      <td>{{country[0]}}</td>
-      <td>{{country[1]}}</td>
-    </tr>
-  </tbody>
-</table> -->
-
 <div>
   <mat-form-field appearance="standard">
     <mat-label>Search</mat-label>
@@ -22,28 +7,30 @@
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
     class="mat-elevation-z8">
 
-    <!-- Position Column -->
     <ng-container matColumnDef="country">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Country </th>
-      <td mat-cell *matCellDef="let element">{{element.country}}</td>
+      <td mat-cell *matCellDef="let element"> {{element.country}}</td>
     </ng-container>
 
     <ng-container matColumnDef="confirmed">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by confirmed"> Confirmed Cases
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.confirmed}} </td>
+      <td mat-cell *matCellDef="let element"><button mat-button
+          (click)="openDialog(element, 'confirmed')">{{element.confirmed}}</button> </td>
     </ng-container>
 
     <ng-container matColumnDef="recovered">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by recovered"> Recovered
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.recovered}} </td>
+      <td mat-cell *matCellDef="let element"><button mat-button
+          (click)="openDialog(element, 'recovered')">{{element.recovered}}</button></td>
     </ng-container>
 
     <ng-container matColumnDef="death">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by death"> Death
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.death}} </td>
+      <td mat-cell *matCellDef="let element"><button mat-button
+          (click)="openDialog(element, 'death')">{{element.death}}</button> </td>
     </ng-container>
 
 

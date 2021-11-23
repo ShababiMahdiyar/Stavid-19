@@ -11,6 +11,15 @@ import { CasesByCountryComponent } from './cases-by-country/cases-by-country.com
 import { MatInputModule } from '@angular/material/input';
 
 import { MatSortModule } from '@angular/material/sort';
+import { CountryComponent } from './cases-by-country/country/country.component';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -18,6 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
   declarations: [
     AppComponent,
     CasesByCountryComponent,
+    CountryComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,9 +37,20 @@ import { MatSortModule } from '@angular/material/sort';
     BrowserModule,
     MatTableModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatSelectModule
+
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
