@@ -77,7 +77,7 @@ export class CasesByCountryComponent {
         complete: parsedData => {
           this.rawCsvData = parsedData.data;
           this.rawCsvData.splice(0, 1)
-          this.calTotaldeath();
+          return this.calTotaldeath();
         }
       });
     } else if (type === 'confirmed') {
@@ -86,7 +86,7 @@ export class CasesByCountryComponent {
         complete: parsedData => {
           this.rawCsvData = parsedData.data;
           this.rawCsvData.splice(0, 1)
-          this.calTotalConfirmed();
+          return this.calTotalConfirmed();
         }
       });
     } else if (type == 'recovered') {
@@ -95,7 +95,7 @@ export class CasesByCountryComponent {
         complete: parsedData => {
           this.rawCsvData = parsedData.data;
           this.rawCsvData.splice(0, 1)
-          this.calTotalRecovered();
+          return this.calTotalRecovered();
         }
       });
     }
@@ -711,6 +711,8 @@ export class CasesByCountryComponent {
     this.calDeathMonthlyCases();
   }
 
+
+  
 
 
 
